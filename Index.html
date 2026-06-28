@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tavila Ansari — Portfolio · Dubai</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --sand:   #C8973A;
+  --sand2:  #E2B96F;
+  --sand3:  #F5DFA0;
+  --deep:   #0A0C14;
+  --deep2:  #111520;
+  --deep3:  #1A1F30;
+  --deep4:  #222840;
+  --teal:   #1B6B72;
+  --teal2:  #2A9DA6;
+  --rose:   #C4736A;
+  --ivory:  #F5F0E8;
+  --text-p: #EDE8DC;
+  --text-m: #9A9080;
+  --white:  #FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text-p);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 5%;background:rgba(10,12,20,0.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(200,151,58,0.12);transition:padding .4s}
+nav.scrolled{padding:.8rem 5%}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--sand)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-m);text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--sand);transform:scaleX(0);transition:transform .3s}
+.nav-links a:hover{color:var(--sand)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{padding:.45rem 1.4rem;border:1px solid var(--sand);color:var(--sand);border-radius:100px;font-size:.78rem;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--sand);color:var(--deep)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden}
+
+/* skyline */
+.skyline-wrap{position:absolute;bottom:0;left:0;right:0;height:280px;pointer-events:none;z-index:1}
+
+/* ambient */
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 75% 40%,rgba(200,151,58,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 20% 70%,rgba(27,107,114,.1) 0%,transparent 60%)}
+
+/* pattern overlay */
+.geo-pattern{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C8973A' stroke-width='0.5'%3E%3Cpolygon points='30,2 58,16 58,44 30,58 2,44 2,16'/%3E%3Cpolygon points='30,10 50,21 50,39 30,50 10,39 10,21'/%3E%3Cline x1='30' y1='2' x2='30' y2='10'/%3E%3Cline x1='58' y1='16' x2='50' y2='21'/%3E%3Cline x1='58' y1='44' x2='50' y2='39'/%3E%3Cline x1='30' y1='58' x2='30' y2='50'/%3E%3Cline x1='2' y1='44' x2='10' y2='39'/%3E%3Cline x1='2' y1='16' x2='10' y2='21'/%3E%3C/g%3E%3C/svg%3E")}
+
+.hero-inner{position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;width:100%;max-width:1300px;margin:0 auto;padding-top:80px}
+
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(200,151,58,.1);border:1px solid rgba(200,151,58,.25);padding:.35rem 1rem;border-radius:100px;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sand);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--sand);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:700;line-height:1.1;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-title em{font-style:italic;color:var(--sand);display:block}
+
+.hero-loc{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--teal2);margin:.9rem 0 0;letter-spacing:.05em}
+.hero-loc svg{width:14px;height:14px;fill:var(--teal2)}
+
+.hero-sub{font-size:.97rem;color:var(--text-m);margin:1rem 0 2rem;line-height:1.8;max-width:430px;opacity:0;animation:fadeUp .8s .6s forwards}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .8s forwards}
+.btn-gold{padding:.85rem 2rem;background:linear-gradient(135deg,var(--sand),#A07020);color:var(--deep);border-radius:100px;font-size:.87rem;text-decoration:none;font-weight:600;letter-spacing:.04em;transition:transform .3s,box-shadow .3s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,151,58,.35)}
+.btn-outline{padding:.85rem 2rem;border:1px solid rgba(200,151,58,.35);color:var(--sand);border-radius:100px;font-size:.87rem;text-decoration:none;transition:all .3s}
+.btn-outline:hover{background:rgba(200,151,58,.1)}
+
+/* avatar card */
+.hero-visual{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeIn 1.2s .5s forwards}
+.avatar-wrap{position:relative;width:340px;height:400px}
+.avatar-ring{position:absolute;inset:-18px;border-radius:50%;border:1px dashed rgba(200,151,58,.25);animation:spinRing 30s linear infinite}
+.avatar-ring::before{content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--sand);transform:translateX(-50%)}
+@keyframes spinRing{to{transform:rotate(360deg)}}
+.avatar-card{width:100%;height:100%;background:linear-gradient(160deg,var(--deep2),var(--deep3));border-radius:28px;border:1px solid rgba(200,151,58,.15);overflow:hidden;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:1.8rem}
+.avatar-top{position:absolute;top:0;left:0;right:0;height:72%;background:linear-gradient(160deg,rgba(200,151,58,.15),rgba(27,107,114,.12));display:flex;align-items:center;justify-content:center;font-size:5.5rem}
+.avatar-name{position:relative;z-index:2;text-align:center}
+.avatar-name h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin-bottom:.2rem}
+.avatar-name p{color:var(--sand);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+.badge{position:absolute;background:rgba(17,21,32,.92);border:1px solid rgba(200,151,58,.22);backdrop-filter:blur(10px);border-radius:12px;padding:.55rem .9rem;font-size:.75rem;font-weight:500;display:flex;align-items:center;gap:.4rem;animation:floatB 3s ease-in-out infinite;white-space:nowrap}
+.badge-tl{top:22px;left:-46px}
+.badge-tr{top:80px;right:-54px;animation-delay:1s}
+.badge-bl{bottom:110px;left:-54px;animation-delay:2s}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* scroll */
+.scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeIn 1s 1.8s forwards;cursor:pointer;z-index:3}
+.scroll-ind span{font-size:.68rem;color:var(--text-m);letter-spacing:.15em;text-transform:uppercase}
+.scroll-arrow{width:22px;height:38px;border:1px solid rgba(200,151,58,.3);border-radius:100px;position:relative}
+.scroll-arrow::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;border-radius:2px;background:var(--sand);animation:sArrow 2s ease-in-out infinite}
+@keyframes sArrow{0%{top:6px;opacity:1}80%{top:20px;opacity:0}100%{top:6px;opacity:0}}
+
+/* ── DUBAI STATS BAR ── */
+#dubai-bar{background:var(--deep2);border-top:1px solid rgba(200,151,58,.1);border-bottom:1px solid rgba(200,151,58,.1);padding:1.4rem 5%}
+.dubai-bar-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:1rem}
+.dubai-stat{display:flex;align-items:center;gap:.8rem;font-size:.82rem;color:var(--text-m)}
+.dubai-stat-icon{font-size:1.3rem}
+.dubai-stat strong{color:var(--sand);font-weight:600;display:block;font-size:1rem}
+
+/* ── SECTIONS ── */
+section{padding:100px 5%}
+.section-inner{max-width:1300px;margin:0 auto}
+.section-tag{display:inline-block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:.9rem;position:relative;padding-left:2rem}
+.section-tag::before{content:'';position:absolute;left:0;top:50%;width:1.3rem;height:1px;background:var(--sand)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem}
+.section-title em{font-style:italic;color:var(--sand)}
+
+/* ── ABOUT ── */
+#about{background:var(--deep)}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center;margin-top:3rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+.stat-card{background:var(--deep2);border:1px solid rgba(200,151,58,.1);border-radius:16px;padding:1.4rem;transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;bottom:-10px;right:-10px;width:60px;height:60px;background:radial-gradient(circle,rgba(200,151,58,.1),transparent 70%)}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(200,151,58,.3)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:700;color:var(--sand);line-height:1;margin-bottom:.3rem}
+.stat-label{font-size:.76rem;color:var(--text-m)}
+.about-text p{color:var(--text-m);line-height:1.85;margin-bottom:1.2rem;font-size:.97rem}
+.about-highlights{display:flex;flex-direction:column;gap:.7rem;margin-top:1.8rem}
+.hi-item{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;background:var(--deep2);border-radius:12px;border:1px solid rgba(200,151,58,.08);transition:all .3s}
+.hi-item:hover{border-color:rgba(200,151,58,.22);background:var(--deep3)}
+.hi-icon{font-size:1.1rem}
+.hi-text{font-size:.85rem;color:var(--text-m)}
+.hi-text strong{color:var(--text-p);display:block;font-size:.88rem;margin-bottom:.1rem}
+
+/* ── SKILLS ── */
+#skills{background:var(--deep2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem;margin-top:3rem}
+.skill-card{background:var(--deep);border:1px solid rgba(200,151,58,.1);border-radius:20px;padding:1.8rem;transition:all .4s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--sand));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.skill-card:hover{transform:translateY(-5px);border-color:rgba(200,151,58,.22)}
+.skill-card:hover::before{transform:scaleX(1)}
+.skill-icon{font-size:1.9rem;margin-bottom:.9rem}
+.skill-name{font-size:1.05rem;font-weight:600;margin-bottom:.45rem}
+.skill-desc{font-size:.8rem;color:var(--text-m);line-height:1.65;margin-bottom:1.3rem}
+.skill-bar-wrap{margin-bottom:1.1rem}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-m);margin-bottom:.35rem}
+.skill-bar{height:3px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal2),var(--sand));border-radius:100px;width:0%;transition:width 1.4s ease}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-tag{padding:.22rem .7rem;border-radius:100px;font-size:.7rem;background:rgba(200,151,58,.1);color:var(--sand2);border:1px solid rgba(200,151,58,.18);letter-spacing:.04em}
+
+/* ── TIMELINE ── */
+#experience{background:var(--deep)}
+.timeline{position:relative;margin-top:3rem;padding-left:2.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--sand) 0%,var(--teal) 60%,transparent 100%)}
+.timeline-item{position:relative;margin-bottom:2.8rem;opacity:0;transform:translateX(-18px);transition:all .6s ease}
+.timeline-item.visible{opacity:1;transform:translateX(0)}
+.timeline-dot{position:absolute;left:-2.95rem;top:.3rem;width:13px;height:13px;border-radius:50%;background:var(--sand);border:2px solid var(--deep);box-shadow:0 0 0 4px rgba(200,151,58,.2)}
+.timeline-card{background:var(--deep2);border:1px solid rgba(200,151,58,.1);border-radius:18px;padding:1.6rem 1.8rem;transition:all .3s}
+.timeline-card:hover{border-color:rgba(200,151,58,.25);transform:translateX(5px)}
+.timeline-date{font-size:.73rem;color:var(--sand);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.45rem}
+.timeline-role{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;margin-bottom:.25rem}
+.timeline-company{font-size:.85rem;color:var(--teal2);margin-bottom:.9rem;font-weight:500}
+.timeline-desc{font-size:.85rem;color:var(--text-m);line-height:1.75}
+.timeline-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.chip{padding:.22rem .75rem;border-radius:100px;font-size:.7rem;background:rgba(200,151,58,.08);color:var(--sand2);border:1px solid rgba(200,151,58,.14)}
+
+/* ── PROJECTS ── */
+#projects{background:var(--deep2)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.8rem;margin-top:3rem}
+.project-card{background:var(--deep);border:1px solid rgba(200,151,58,.1);border-radius:22px;overflow:hidden;transition:all .4s;cursor:pointer}
+.project-card:hover{transform:translateY(-7px);box-shadow:0 22px 55px rgba(0,0,0,.5);border-color:rgba(200,151,58,.22)}
+.project-thumb{height:185px;display:flex;align-items:center;justify-content:center;font-size:3.8rem;position:relative}
+.pt1{background:linear-gradient(135deg,rgba(27,107,114,.35),rgba(200,151,58,.18))}
+.pt2{background:linear-gradient(135deg,rgba(200,151,58,.25),rgba(196,115,106,.2))}
+.pt3{background:linear-gradient(135deg,rgba(196,115,106,.25),rgba(27,107,114,.2))}
+.pt4{background:linear-gradient(135deg,rgba(26,31,48,.9),rgba(200,151,58,.2))}
+.project-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,20,.7) 0%,transparent 60%)}
+.project-body{padding:1.4rem}
+.project-type{font-size:.7rem;color:var(--sand);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.project-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;margin-bottom:.5rem}
+.project-desc{font-size:.8rem;color:var(--text-m);line-height:1.65;margin-bottom:1rem}
+.project-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--teal2);text-decoration:none;font-weight:500;transition:gap .3s,color .3s}
+.project-link:hover{gap:.8rem;color:var(--sand)}
+
+/* ── EDUCATION ── */
+#education{background:var(--deep)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:3rem}
+.edu-card{background:var(--deep2);border:1px solid rgba(200,151,58,.1);border-radius:20px;padding:1.8rem;position:relative;overflow:hidden;transition:all .3s}
+.edu-card::after{content:'';position:absolute;bottom:0;right:0;width:110px;height:110px;background:radial-gradient(circle,rgba(27,107,114,.1) 0%,transparent 70%)}
+.edu-card:hover{transform:translateY(-4px);border-color:rgba(200,151,58,.25)}
+.edu-year{font-size:.73rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem}
+.edu-school{font-size:.82rem;color:var(--teal2);margin-bottom:.7rem}
+.edu-desc{font-size:.78rem;color:var(--text-m);line-height:1.65}
+
+/* ── CONTACT ── */
+#contact{background:var(--deep2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;margin-top:3rem;align-items:start}
+.contact-info h3{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:600;line-height:1.25;margin-bottom:.9rem}
+.contact-info p{color:var(--text-m);line-height:1.75;margin-bottom:1.8rem}
+.contact-links{display:flex;flex-direction:column;gap:.9rem}
+.contact-link{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.1rem;background:var(--deep);border:1px solid rgba(200,151,58,.1);border-radius:13px;text-decoration:none;color:var(--text-p);transition:all .3s}
+.contact-link:hover{border-color:var(--sand);transform:translateX(5px)}
+.cl-icon{font-size:1.1rem}
+.cl-text span{display:block;font-size:.7rem;color:var(--text-m);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.1rem}
+.cl-text strong{font-size:.85rem}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-group{display:flex;flex-direction:column;gap:.45rem}
+.form-group label{font-size:.75rem;color:var(--text-m);letter-spacing:.08em;text-transform:uppercase}
+.form-group input,.form-group textarea{background:var(--deep);border:1px solid rgba(200,151,58,.15);border-radius:11px;padding:.85rem 1rem;color:var(--text-p);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border-color .3s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--sand)}
+.form-group textarea{min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.submit-btn{padding:.95rem 2.3rem;background:linear-gradient(135deg,var(--sand),#A07020);color:var(--deep);border:none;border-radius:100px;font-size:.86rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .3s;align-self:flex-start}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(200,151,58,.35)}
+
+/* ── FOOTER ── */
+footer{background:var(--deep);border-top:1px solid rgba(200,151,58,.08);padding:2.2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Playfair Display',serif;font-style:italic;color:var(--sand);font-size:1.1rem}
+.footer-copy{font-size:.76rem;color:var(--text-m)}
+.footer-social{display:flex;gap:.8rem}
+.footer-social a{width:34px;height:34px;border:1px solid rgba(200,151,58,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-m);text-decoration:none;font-size:.75rem;transition:all .3s}
+.footer-social a:hover{border-color:var(--sand);color:var(--sand)}
+
+/* ── ANIMS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESP ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;text-align:center;padding-top:110px}
+  .hero-sub{margin:1rem auto 2rem}
+  .hero-btns{justify-content:center}
+  .hero-visual{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .edu-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .nav-links{display:none}
+  section{padding:70px 5%}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Tavila Ansari</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="geo-pattern"></div>
+
+  <!-- Dubai skyline SVG -->
+  <div class="skyline-wrap">
+    <svg width="100%" height="280" viewBox="0 0 1440 280" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C8973A" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#C8973A" stop-opacity="0.04"/>
+        </linearGradient>
+        <linearGradient id="bldG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1A1F30" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#0A0C14" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Background glow horizon -->
+      <ellipse cx="720" cy="280" rx="800" ry="90" fill="#C8973A" opacity="0.07"/>
+
+      <!-- Buildings group -->
+      <g fill="url(#bldG)" stroke="#C8973A" stroke-width="0.4" stroke-opacity="0.3">
+        <!-- Far bg buildings -->
+        <rect x="0" y="210" width="80" height="70"/>
+        <rect x="85" y="195" width="60" height="85"/>
+        <rect x="150" y="220" width="50" height="60"/>
+        <rect x="1310" y="215" width="65" height="65"/>
+        <rect x="1370" y="200" width="70" height="80"/>
+
+        <!-- Mid-range buildings -->
+        <rect x="200" y="180" width="70" height="100"/>
+        <rect x="240" y="165" width="30" height="115"/>
+        <rect x="275" y="175" width="65" height="105"/>
+        <rect x="345" y="185" width="55" height="95"/>
+        <rect x="405" y="170" width="40" height="110"/>
+
+        <rect x="1050" y="175" width="55" height="105"/>
+        <rect x="1110" y="165" width="45" height="115"/>
+        <rect x="1160" y="180" width="70" height="100"/>
+        <rect x="1235" y="185" width="50" height="95"/>
+        <rect x="1290" y="170" width="40" height="110"/>
+
+        <!-- Dubai Frame / Museum of Future shape (left-center) -->
+        <rect x="450" y="140" width="90" height="140" rx="3"/>
+        <rect x="470" y="125" width="50" height="25" rx="2"/>
+        <rect x="480" y="110" width="30" height="20" rx="2"/>
+
+        <!-- Emirates Towers style (twin) -->
+        <rect x="570" y="80" width="38" height="200"/>
+        <polygon points="570,80 589,50 608,80"/>
+        <rect x="618" y="95" width="35" height="185"/>
+        <polygon points="618,95 635.5,68 653,95"/>
+
+        <!-- Burj Khalifa (center-left) -->
+        <rect x="680" y="30" width="26" height="250"/>
+        <rect x="686" y="18" width="14" height="15"/>
+        <rect x="691" y="8" width="4" height="12"/>
+        <!-- Setback tiers -->
+        <rect x="674" y="80" width="38" height="10"/>
+        <rect x="670" y="130" width="46" height="8"/>
+        <rect x="672" y="180" width="42" height="7"/>
+        <rect x="675" y="220" width="36" height="6"/>
+
+        <!-- Burj Al Arab silhouette (right of center) -->
+        <rect x="760" y="120" width="12" height="160"/>
+        <path d="M772 120 Q840 130 840 280 L772 280Z" fill="url(#bldG)" stroke="#C8973A" stroke-width="0.4" stroke-opacity="0.25"/>
+        <path d="M760 120 Q692 130 692 280 L760 280Z" fill="url(#bldG)" stroke="#C8973A" stroke-width="0.4" stroke-opacity="0.25"/>
+        <!-- sail highlight -->
+        <line x1="766" y1="120" x2="840" y2="260" stroke="#C8973A" stroke-width="0.5" stroke-opacity="0.3"/>
+
+        <!-- Cayan / Twisted Tower -->
+        <rect x="890" y="100" width="32" height="180"/>
+        <rect x="884" y="95" width="44" height="8"/>
+        <rect x="886" y="150" width="40" height="6"/>
+        <rect x="888" y="205" width="36" height="5"/>
+
+        <!-- Marina Towers -->
+        <rect x="950" y="115" width="36" height="165"/>
+        <rect x="992" y="130" width="32" height="150"/>
+        <rect x="1030" y="120" width="28" height="160"/>
+
+        <!-- Small foreground details -->
+        <rect x="830" y="220" width="45" height="60"/>
+        <rect x="880" y="215" width="30" height="65"/>
+      </g>
+
+      <!-- Window lights -->
+      <g fill="#C8973A" opacity="0.25">
+        <!-- Burj Khalifa windows -->
+        <rect x="685" y="40" width="2" height="2"/>
+        <rect x="689" y="40" width="2" height="2"/>
+        <rect x="685" y="55" width="2" height="2"/>
+        <rect x="689" y="55" width="2" height="2"/>
+        <rect x="683" y="90" width="2" height="2"/>
+        <rect x="687" y="90" width="2" height="2"/>
+        <rect x="691" y="90" width="2" height="2"/>
+        <rect x="683" y="110" width="2" height="2"/>
+        <rect x="691" y="110" width="2" height="2"/>
+        <!-- Marina tower windows -->
+        <rect x="955" y="130" width="2" height="2"/>
+        <rect x="963" y="130" width="2" height="2"/>
+        <rect x="971" y="130" width="2" height="2"/>
+        <rect x="955" y="145" width="2" height="2"/>
+        <rect x="963" y="145" width="2" height="2"/>
+        <rect x="997" y="145" width="2" height="2"/>
+        <rect x="1003" y="145" width="2" height="2"/>
+        <rect x="1035" y="140" width="2" height="2"/>
+        <rect x="1041" y="140" width="2" height="2"/>
+        <!-- Emirates towers -->
+        <rect x="575" y="100" width="2" height="2"/>
+        <rect x="580" y="100" width="2" height="2"/>
+        <rect x="575" y="115" width="2" height="2"/>
+        <rect x="580" y="115" width="2" height="2"/>
+        <rect x="575" y="130" width="2" height="2"/>
+        <rect x="623" y="110" width="2" height="2"/>
+        <rect x="628" y="110" width="2" height="2"/>
+        <rect x="623" y="125" width="2" height="2"/>
+      </g>
+
+      <!-- Ground reflection shimmer -->
+      <rect x="0" y="275" width="1440" height="5" fill="url(#skyG)"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">
+        <span class="dot-live"></span>
+        Based in Dubai, UAE &nbsp;🇦🇪
+      </div>
+      <h1 class="hero-title">
+        Creative &amp;<br><em>Purposeful</em>
+        Design
+      </h1>
+      <div class="hero-loc" style="opacity:0;animation:fadeUp .8s .5s forwards">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Dubai Marina, United Arab Emirates
+      </div>
+      <p class="hero-sub">Hi, I'm <strong>Tavila Ansari</strong> — a passionate professional thriving in Dubai's dynamic landscape. Blending creativity with strategy to craft meaningful, results-driven work.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-gold">View My Work →</a>
+        <a href="#contact" class="btn-outline">Let's Connect</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar-card">
+          <div class="avatar-top">🌸</div>
+          <div class="avatar-name">
+            <h3>Tavila Ansari</h3>
+            <p>Dubai · Professional · Creative</p>
+          </div>
+        </div>
+        <div class="badge badge-tl">🏙️ Dubai-Based</div>
+        <div class="badge badge-tr">✨ 3+ Years Exp.</div>
+        <div class="badge badge-bl">🌍 Open to Work</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-ind" onclick="document.getElementById('dubai-bar').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-arrow"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- DUBAI STATS BAR -->
+<div id="dubai-bar">
+  <div class="dubai-bar-inner">
+    <div class="dubai-stat">
+      <span class="dubai-stat-icon">🏙️</span>
+      <div><strong>Dubai, UAE</strong>Currently based &amp; working</div>
+    </div>
+    <div class="dubai-stat">
+      <span class="dubai-stat-icon">🕌</span>
+      <div><strong>Multicultural</strong>Global team experience</div>
+    </div>
+    <div class="dubai-stat">
+      <span class="dubai-stat-icon">✈️</span>
+      <div><strong>Open to Travel</strong>Available for international roles</div>
+    </div>
+    <div class="dubai-stat">
+      <span class="dubai-stat-icon">🌐</span>
+      <div><strong>UAE + India</strong>Cross-market expertise</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">Who I Am</div>
+    <h2 class="section-title">About <em>Me</em></h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-stats">
+          <div class="stat-card"><div class="stat-num" data-target="3">0</div><div class="stat-label">Years of Experience</div></div>
+          <div class="stat-card"><div class="stat-num" data-target="20">0</div><div class="stat-label">Projects Completed</div></div>
+          <div class="stat-card"><div class="stat-num" data-target="10">0</div><div class="stat-label">Happy Clients</div></div>
+          <div class="stat-card"><div class="stat-num" data-suf="★">5</div><div class="stat-label">Average Rating</div></div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p>I'm Tavila Ansari — a dedicated professional currently living and thriving in Dubai's vibrant, cosmopolitan energy. My journey from India to the UAE has given me a uniquely global perspective and the resilience to excel in fast-paced, multicultural environments.</p>
+        <p>Whether I'm tackling complex challenges, collaborating across diverse teams, or exploring creative solutions, I bring genuine curiosity, attention to detail, and a commitment to quality work — the kind of ambition this city was built on.</p>
+        <div class="about-highlights">
+          <div class="hi-item"><span class="hi-icon">📍</span><div class="hi-text"><strong>Location</strong>Dubai, United Arab Emirates 🇦🇪</div></div>
+          <div class="hi-item"><span class="hi-icon">🎓</span><div class="hi-text"><strong>Education</strong>Bachelor's Graduate · Continuous Learner</div></div>
+          <div class="hi-item"><span class="hi-icon">💼</span><div class="hi-text"><strong>Status</strong>Open to exciting new opportunities</div></div>
+          <div class="hi-item"><span class="hi-icon">🌐</span><div class="hi-text"><strong>Languages</strong>English · Hindi · Urdu · (Basic Arabic)</div></div>
+          <div class="hi-item"><span class="hi-icon">✈️</span><div class="hi-text"><strong>Nationality</strong>Indian · UAE Resident</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">💡</div>
+        <div class="skill-name">Strategic Thinking</div>
+        <div class="skill-desc">Analysing complex situations, identifying opportunities, and building plans that drive results in competitive markets like Dubai's.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>90%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="90"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">Planning</span><span class="skill-tag">Analysis</span><span class="skill-tag">Problem-Solving</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-name">Communication &amp; Collaboration</div>
+        <div class="skill-desc">Strong interpersonal skills honed across multicultural UAE and international team environments.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>95%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="95"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">Public Speaking</span><span class="skill-tag">Teamwork</span><span class="skill-tag">Leadership</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Creative Problem Solving</div>
+        <div class="skill-desc">Blending analytical reasoning with imagination to produce solutions that are both effective and distinctly elegant.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>88%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="88"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">Innovation</span><span class="skill-tag">Design Thinking</span><span class="skill-tag">Ideation</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Research &amp; Analysis</div>
+        <div class="skill-desc">Gathering, interpreting, and presenting data to guide informed decisions — essential in the UAE's data-driven business landscape.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>85%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="85"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">Data Analysis</span><span class="skill-tag">Reporting</span><span class="skill-tag">Insights</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🚀</div>
+        <div class="skill-name">Project Management</div>
+        <div class="skill-desc">Delivering projects on time and within scope, managing stakeholders across Dubai's fast-moving corporate environment.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>82%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="82"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">Agile</span><span class="skill-tag">Planning</span><span class="skill-tag">Coordination</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">Digital Literacy</div>
+        <div class="skill-desc">Comfortable with modern digital tools and the Smart Dubai ecosystem — learning new technologies quickly and confidently.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>87%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="87"></div></div></div>
+        <div class="skill-tags"><span class="skill-tag">MS Office</span><span class="skill-tag">Google Workspace</span><span class="skill-tag">Tech-Savvy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">Career Path</div>
+    <h2 class="section-title">Work <em>Experience</em></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2023 — Present · Dubai, UAE 🇦🇪</div>
+          <div class="timeline-role">Professional Role</div>
+          <div class="timeline-company">Current Organisation · Full-time</div>
+          <div class="timeline-desc">Driving key initiatives within Dubai's competitive market, collaborating across multicultural departments, and contributing to strategic goals. Responsible for project coordination, stakeholder communication, and ensuring high-quality deliverables within set timelines.</div>
+          <div class="timeline-chips"><span class="chip">Dubai Market</span><span class="chip">Strategy</span><span class="chip">Execution</span><span class="chip">Leadership</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2022 — 2023 · UAE / India</div>
+          <div class="timeline-role">Associate / Junior Professional</div>
+          <div class="timeline-company">Previous Organisation · Full-time</div>
+          <div class="timeline-desc">Supported senior team members on critical projects, conducted research and analysis, managed client and partner communication, and helped implement process improvements across cross-border teams.</div>
+          <div class="timeline-chips"><span class="chip">Research</span><span class="chip">Client Relations</span><span class="chip">Cross-border</span></div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2021 — 2022 · India</div>
+          <div class="timeline-role">Intern / Trainee</div>
+          <div class="timeline-company">Organisation · Internship</div>
+          <div class="timeline-desc">Gained hands-on experience in a professional environment, contributed to live projects, and developed foundational skills in communication, organisation, and professional collaboration that have served me well in the UAE.</div>
+          <div class="timeline-chips"><span class="chip">Internship</span><span class="chip">Learning</span><span class="chip">Foundation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Featured <em>Projects</em></h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-thumb pt1">🏙️<div class="project-overlay"></div></div>
+        <div class="project-body">
+          <div class="project-type">Dubai Market Strategy</div>
+          <div class="project-title">UAE Market Entry Framework</div>
+          <div class="project-desc">Designed a comprehensive strategic framework for entering the Dubai market, adopted across the organisation and improving planning efficiency by 40%.</div>
+          <a href="#" class="project-link">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb pt2">📈<div class="project-overlay"></div></div>
+        <div class="project-body">
+          <div class="project-type">Research &amp; Analysis</div>
+          <div class="project-title">GCC Market Analysis Report</div>
+          <div class="project-desc">In-depth market research covering Dubai, Abu Dhabi, and wider GCC landscape — informing key product and investment decisions.</div>
+          <a href="#" class="project-link">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb pt3">🌐<div class="project-overlay"></div></div>
+        <div class="project-body">
+          <div class="project-type">Digital &amp; Communication</div>
+          <div class="project-title">Digital Engagement Campaign</div>
+          <div class="project-desc">Led a cross-platform digital campaign tailored to UAE audiences, growing engagement and brand reach across MENA region significantly.</div>
+          <a href="#" class="project-link">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb pt4">🤝<div class="project-overlay"></div></div>
+        <div class="project-body">
+          <div class="project-type">Team &amp; Leadership</div>
+          <div class="project-title">Multicultural Team Programme</div>
+          <div class="project-desc">Organised and facilitated a professional development programme for a diverse, multinational team of 15+ members across the UAE office.</div>
+          <a href="#" class="project-link">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-tag">Academic Journey</div>
+    <h2 class="section-title">Education &amp; <em>Certifications</em></h2>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-year">📅 Graduation Year</div>
+        <div class="edu-degree">Bachelor's Degree</div>
+        <div class="edu-school">University / Institution Name · India</div>
+        <div class="edu-desc">Completed undergraduate studies with strong academic performance. Developed core skills in critical thinking, research, and communication.</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">📅 Year · UAE</div>
+        <div class="edu-degree">Professional Certification</div>
+        <div class="edu-school">Certifying Body · Dubai</div>
+        <div class="edu-desc">Earned a recognised professional certification enhancing expertise in a key domain relevant to the UAE market and industry.</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">📅 Year</div>
+        <div class="edu-degree">Specialisation / Course</div>
+        <div class="edu-school">Institution / Online Platform</div>
+        <div class="edu-desc">Completed a specialisation programme focused on emerging skills, applied to real-world projects and UAE business contexts.</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">📅 Ongoing · Dubai</div>
+        <div class="edu-degree">Continuous Learning</div>
+        <div class="edu-school">KHDA-Recognised Platforms &amp; Institutions</div>
+        <div class="edu-desc">Committed to lifelong learning through UAE-based workshops, webinars, and professional development aligned with Dubai's Vision 2033.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's <em>Work</em> Together</h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Have an opportunity in Dubai or beyond? I'd love to hear from you.</h3>
+        <p>Whether you're looking to collaborate on a project, offer an exciting role in the UAE, or simply want to connect — my inbox is always open.</p>
+        <div class="contact-links">
+          <a href="mailto:tavila@email.com" class="contact-link">
+            <span class="cl-icon">📧</span>
+            <div class="cl-text"><span>Email</span><strong>tavila@email.com</strong></div>
+          </a>
+          <a href="https://in.linkedin.com/in/tavila-ansari-1b8189160" target="_blank" class="contact-link">
+            <span class="cl-icon">💼</span>
+            <div class="cl-text"><span>LinkedIn</span><strong>Tavila Ansari</strong></div>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="cl-icon">📍</span>
+            <div class="cl-text"><span>Location</span><strong>Dubai, UAE 🇦🇪 · Open to Remote</strong></div>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="cl-icon">📞</span>
+            <div class="cl-text"><span>Phone / WhatsApp</span><strong>+971 XX XXX XXXX</strong></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Jane Smith"/></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"/></div>
+        </div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="Collaboration Opportunity in Dubai"/></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project, role, or opportunity…"></textarea></div>
+        <button class="submit-btn" onclick="handleSubmit(this)">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Tavila Ansari</div>
+  <div class="footer-copy">© 2024 Tavila Ansari · Dubai, UAE 🇦🇪 · Crafted with care.</div>
+  <div class="footer-social">
+    <a href="https://in.linkedin.com/in/tavila-ansari-1b8189160" target="_blank">in</a>
+    <a href="#">tw</a>
+    <a href="#">ig</a>
+  </div>
+</footer>
+
+<script>
+/* Nav scroll */
+const nb = document.getElementById('navbar');
+window.addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 50));
+
+/* Reveal observer */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .timeline-item').forEach(el => obs.observe(el));
+
+/* Skill bars */
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-bar-fill').forEach(b => {
+        b.style.width = (b.dataset.w || 80) + '%';
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-card').forEach(el => barObs.observe(el));
+
+/* Counter animation */
+function runCounters() {
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suf || '+';
+    let start = null;
+    const step = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / 1400, 1);
+      el.textContent = Math.floor(p * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { runCounters(); cObs.disconnect(); } });
+}, { threshold: 0.4 });
+const statsEl = document.querySelector('.about-stats');
+if (statsEl) cObs.observe(statsEl);
+
+/* Form submit */
+function handleSubmit(btn) {
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'linear-gradient(135deg, #2A9DA6, #1B6B72)';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+    }, 3000);
+  }, 1800);
+}
+</script>
+</body>
+</html>
